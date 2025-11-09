@@ -1,10 +1,183 @@
-// UserProfile Component using Props
+// UserProfile Component using Context API
+import { useContext } from 'react';
+import UserContext from './UserContext';
+
 function UserProfile(props) {
+    const contextUser = useContext(UserContext);
+
     return (
-        <div className="user-profile">
-            <h2>{props.name}</h2>
-            <p>Age: {props.age}</p>
-            <p>Bio: {props.bio}</p>
+        <div style={{
+            border: '2px solid blue',
+            borderRadius: '15px',
+            padding: '25px',
+            margin: '20px auto',
+            backgroundColor: '#ffffff',
+            boxShadow: '0 8px 25px rgba(0,0,0,0.1)',
+            maxWidth: '650px',
+            transition: 'all 0.3s ease',
+            background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
+            borderLeft: '6px solid blue',
+            position: 'relative',
+            overflow: 'hidden'
+        }}>
+            <div style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                width: '80px',
+                height: '80px',
+                background: 'radial-gradient(circle, rgba(0, 0, 255, 0.1) 0%, transparent 70%)',
+                borderRadius: '0 0 0 100%'
+            }}></div>
+            
+            <h2 style={{
+                color: 'blue',
+                fontSize: '2.1rem',
+                marginBottom: '20px',
+                borderBottom: '3px solid blue',
+                paddingBottom: '12px',
+                textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px'
+            }}>
+                <span style={{
+                    display: 'inline-block',
+                    width: '12px',
+                    height: '12px',
+                    backgroundColor: 'blue',
+                    borderRadius: '50%'
+                }}></span>
+                {props.name}
+            </h2>
+            
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '15px',
+                marginBottom: '15px',
+                flexWrap: 'wrap'
+            }}>
+                <p style={{
+                    fontSize: '1.2rem',
+                    margin: 0,
+                    color: 'blue',
+                    backgroundColor: '#ecf0f1',
+                    padding: '8px 15px',
+                    borderRadius: '20px',
+                    border: '1px solid blue'
+                }}>
+                    Age: <span style={{
+                        fontWeight: 'bold',
+                        color: 'blue',
+                        fontSize: '1.3rem',
+                        marginLeft: '5px'
+                    }}>{props.age}</span>
+                </p>
+                
+                <p style={{
+                    fontSize: '1.2rem',
+                    margin: 0,
+                    color: 'blue',
+                    backgroundColor: '#ecf0f1',
+                    padding: '8px 15px',
+                    borderRadius: '20px',
+                    border: '1px solid blue'
+                }}>
+                    Location: <span style={{
+                        fontWeight: 'bold',
+                        color: 'blue',
+                        fontSize: '1.3rem',
+                        marginLeft: '5px'
+                    }}>{props.location || 'Unknown'}</span>
+                </p>
+            </div>
+            
+            <div style={{
+                backgroundColor: '#f8f9fa',
+                padding: '20px',
+                borderRadius: '10px',
+                marginTop: '15px',
+                borderLeft: '5px solid blue',
+                boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)',
+                position: 'relative'
+            }}>
+                <p style={{
+                    margin: 0,
+                    fontStyle: 'italic',
+                    color: 'blue',
+                    lineHeight: '1.6',
+                    fontSize: '1.1rem',
+                    textAlign: 'justify'
+                }}>
+                    {props.bio}
+                </p>
+                
+                <div style={{
+                    position: 'absolute',
+                    top: '10px',
+                    right: '15px',
+                    fontSize: '2rem',
+                    color: 'blue',
+                    opacity: 0.1
+                }}>
+                    "
+                </div>
+            </div>
+
+            {/* Context API Display Section */}
+            <div style={{
+                marginTop: '20px',
+                padding: '15px',
+                backgroundColor: '#e6f7ff',
+                borderRadius: '8px',
+                border: '2px dashed #1890ff'
+            }}>
+                <h4 style={{
+                    margin: '0 0 10px 0',
+                    color: '#1890ff',
+                    borderBottom: '1px solid #91d5ff',
+                    paddingBottom: '5px'
+                }}>
+                    Context API Data:
+                </h4>
+                <p style={{
+                    margin: '5px 0',
+                    color: '#0050b3',
+                    fontSize: '0.9rem'
+                }}>
+                    <strong>From Context:</strong> {contextUser.name} ({contextUser.email})
+                </p>
+                <p style={{
+                    margin: '5px 0 0 0',
+                    color: '#666',
+                    fontSize: '0.8rem',
+                    fontStyle: 'italic'
+                }}>
+                    This data is loaded via useContext hook!
+                </p>
+            </div>
+            
+            {props.hobbies && (
+                <div style={{
+                    marginTop: '20px',
+                    padding: '15px',
+                    backgroundColor: '#e6f0ff',
+                    borderRadius: '8px',
+                    border: '1px dashed blue'
+                }}>
+                    <p style={{
+                        margin: '0 0 10px 0',
+                        fontWeight: 'bold',
+                        color: 'blue'
+                    }}>
+                        Hobbies:
+                    </p>
+                    <p style={{ margin: 0, color: 'blue' }}>
+                        {props.hobbies}
+                    </p>
+                </div>
+            )}
         </div>
     );
 }
