@@ -61,24 +61,7 @@ function MainContent() {
                     fontWeight: '500',
                     padding: '0 20px'
                 }}>
-                    I love to visit <span style={{
-                        color: '#e74c3c', 
-                        fontWeight: 'bold',
-                        textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
-                        fontSize: '1.4rem'
-                    }}>New York</span>, 
-                    <span style={{
-                        color: '#3498db', 
-                        fontWeight: 'bold',
-                        textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
-                        fontSize: '1.4rem'
-                    }}> Paris</span>, and 
-                    <span style={{
-                        color: '#2ecc71', 
-                        fontWeight: 'bold',
-                        textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
-                        fontSize: '1.4rem'
-                    }}> Tokyo</span>.
+                    I love to visit New York, Paris, and Tokyo.
                 </p>
                 
                 <div style={{
