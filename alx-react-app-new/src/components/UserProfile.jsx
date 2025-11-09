@@ -2,7 +2,7 @@
 function UserProfile(props) {
     return (
         <div style={{
-            border: '2px solid #3498db',
+            border: '2px solid blue',
             borderRadius: '15px',
             padding: '25px',
             margin: '20px auto',
@@ -11,7 +11,7 @@ function UserProfile(props) {
             maxWidth: '650px',
             transition: 'all 0.3s ease',
             background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
-            borderLeft: '6px solid #e74c3c',
+            borderLeft: '6px solid blue',
             position: 'relative',
             overflow: 'hidden'
         }}>
@@ -21,15 +21,15 @@ function UserProfile(props) {
                 right: 0,
                 width: '80px',
                 height: '80px',
-                background: 'radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(0, 0, 255, 0.1) 0%, transparent 70%)',
                 borderRadius: '0 0 0 100%'
             }}></div>
             
             <h2 style={{
-                color: '#2c3e50',
+                color: 'blue',
                 fontSize: '2.1rem',
                 marginBottom: '20px',
-                borderBottom: '3px solid #3498db',
+                borderBottom: '3px solid blue',
                 paddingBottom: '12px',
                 textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
                 display: 'flex',
@@ -40,7 +40,7 @@ function UserProfile(props) {
                     display: 'inline-block',
                     width: '12px',
                     height: '12px',
-                    backgroundColor: '#2ecc71',
+                    backgroundColor: 'blue',
                     borderRadius: '50%'
                 }}></span>
                 {props.name}
@@ -56,15 +56,15 @@ function UserProfile(props) {
                 <p style={{
                     fontSize: '1.2rem',
                     margin: 0,
-                    color: '#34495e',
+                    color: 'blue',
                     backgroundColor: '#ecf0f1',
                     padding: '8px 15px',
                     borderRadius: '20px',
-                    border: '1px solid #bdc3c7'
+                    border: '1px solid blue'
                 }}>
                     Age: <span style={{
                         fontWeight: 'bold',
-                        color: '#e74c3c',
+                        color: 'blue',
                         fontSize: '1.3rem',
                         marginLeft: '5px'
                     }}>{props.age}</span>
@@ -73,15 +73,15 @@ function UserProfile(props) {
                 <p style={{
                     fontSize: '1.2rem',
                     margin: 0,
-                    color: '#34495e',
+                    color: 'blue',
                     backgroundColor: '#ecf0f1',
                     padding: '8px 15px',
                     borderRadius: '20px',
-                    border: '1px solid #bdc3c7'
+                    border: '1px solid blue'
                 }}>
                     Location: <span style={{
                         fontWeight: 'bold',
-                        color: '#3498db',
+                        color: 'blue',
                         fontSize: '1.3rem',
                         marginLeft: '5px'
                     }}>{props.location || 'Unknown'}</span>
@@ -93,14 +93,14 @@ function UserProfile(props) {
                 padding: '20px',
                 borderRadius: '10px',
                 marginTop: '15px',
-                borderLeft: '5px solid #3498db',
+                borderLeft: '5px solid blue',
                 boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.05)',
                 position: 'relative'
             }}>
                 <p style={{
                     margin: 0,
                     fontStyle: 'italic',
-                    color: '#2c3e50',
+                    color: 'blue',
                     lineHeight: '1.6',
                     fontSize: '1.1rem',
                     textAlign: 'justify'
@@ -113,7 +113,7 @@ function UserProfile(props) {
                     top: '10px',
                     right: '15px',
                     fontSize: '2rem',
-                    color: '#3498db',
+                    color: 'blue',
                     opacity: 0.1
                 }}>
                     "
@@ -124,18 +124,18 @@ function UserProfile(props) {
                 <div style={{
                     marginTop: '20px',
                     padding: '15px',
-                    backgroundColor: '#fff9e6',
+                    backgroundColor: '#e6f0ff',
                     borderRadius: '8px',
-                    border: '1px dashed #f39c12'
+                    border: '1px dashed blue'
                 }}>
                     <p style={{
                         margin: '0 0 10px 0',
                         fontWeight: 'bold',
-                        color: '#e67e22'
+                        color: 'blue'
                     }}>
                         Hobbies:
                     </p>
-                    <p style={{ margin: 0, color: '#d35400' }}>
+                    <p style={{ margin: 0, color: 'blue' }}>
                         {props.hobbies}
                     </p>
                 </div>
