@@ -3,6 +3,8 @@ import RecipeList from './components/RecipeList';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
+import SearchBar from './components/SearchBar';
+import AdvancedFilters from './components/AdvancedFilters';
 import './App.css';
 
 function App() {
@@ -18,13 +20,19 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/" element={
-                <>
-                  <AddRecipeForm />
-                  <RecipeList />
-                </>
+                <div className="app-layout">
+                  <div className="sidebar">
+                    <AddRecipeForm />
+                    <AdvancedFilters />
+                  </div>
+                  <div className="main-content">
+                    <SearchBar />
+                    <RecipeList />
+                  </div>
+                </div>
               } />
               <Route path="/recipe/:id" element={<RecipeDetails />} />
-              <Route path="/edit-recipe/:id" element={<EditRecipeForm />} />
+              <Route path="/edit/:id" element={<EditRecipeForm />} />
             </Routes>
           </div>
         </main>
