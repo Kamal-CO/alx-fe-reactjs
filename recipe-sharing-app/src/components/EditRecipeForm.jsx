@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import useRecipeStore from './recipeStore';
+import useRecipeStore from '../store/recipeStore';
 
 const EditRecipeForm = () => {
   const { id } = useParams();
@@ -38,8 +38,9 @@ const EditRecipeForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    // Add event.preventDefault() here
+    event.preventDefault();
     
     if (!formData.title.trim() || !formData.description.trim()) {
       alert('Please fill in all required fields');
