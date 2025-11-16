@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-const useRecipeStore = create((setRecipes) => ({
+const useRecipeStore = create((set, get) => ({
   recipes: [
     {
       id: 1,
@@ -17,6 +17,9 @@ const useRecipeStore = create((setRecipes) => ({
       instructions: "Heat oil, sauté garlic and ginger. Add vegetables and stir fry. Add soy sauce."
     }
   ],
+  
+
+  setRecipes: (recipes) => set({ recipes }),
   
   addRecipe: (newRecipe) => 
     set((state) => ({ 
@@ -36,7 +39,7 @@ const useRecipeStore = create((setRecipes) => ({
     })),
   
   getRecipe: (id) => {
-    return useRecipeStore.getState().recipes.find(recipe => recipe.id === id);
+    return get().recipes.find(recipe => recipe.id === id);
   }
 }));
 

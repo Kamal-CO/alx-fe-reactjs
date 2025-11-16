@@ -1,90 +1,63 @@
 import { useState } from 'react';
-import useRecipeStore from './recipeStore';
+import useRecipeStore from '../store/recipeStore';
 
 const AddRecipeForm = () => {
-  const addRecipe = useRecipeStore((state) => state.addRecipe);
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    ingredients: '',
-    instructions: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+  const addRecipe = useRecipeStore(state => state.addRecipe);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [ingredients, setIngredients] = useState('');
+  const [instructions, setInstructions] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-    if (!formData.title.trim() || !formData.description.trim()) {
-      alert('Please fill in title and description');
-      return;
-    }
-
-    addRecipe(formData);
-    
-    setFormData({
-      title: '',
-      description: '',
-      ingredients: '',
-      instructions: ''
+    addRecipe({ 
+      id: Date.now(), 
+      title, 
+      description,
+      ingredients,
+      instructions 
     });
+    setTitle('');
+    setDescription('');
+    setIngredients('');
+    setInstructions('');
   };
 
   return (
     <form onSubmit={handleSubmit} className="add-recipe-form">
       <h2>Add New Recipe</h2>
       
-      <div className="form-group">
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          placeholder="Recipe Title *"
-          className="form-input"
-          required
-        />
-      </div>
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Title"
+        className="form-input"
+      />
       
-      <div className="form-group">
-        <textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          placeholder="Recipe Description *"
-          className="form-textarea"
-          rows="3"
-          required
-        />
-      </div>
+      <textarea
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        placeholder="Description"
+        className="form-textarea"
+        rows="3"
+      />
 
-      <div className="form-group">
-        <textarea
-          name="ingredients"
-          value={formData.ingredients}
-          onChange={handleChange}
-          placeholder="Ingredients (comma-separated)"
-          className="form-textarea"
-          rows="4"
-        />
-      </div>
+      <textarea
+        value={ingredients}
+        onChange={(e) => setIngredients(e.target.value)}
+        placeholder="Ingredients"
+        className="form-textarea"
+        rows="4"
+      />
 
-      <div className="form-group">
-        <textarea
-          name="instructions"
-          value={formData.instructions}
-          onChange={handleChange}
-          placeholder="Instructions"
-          className="form-textarea"
-          rows="6"
-        />
-      </div>
+      <textarea
+        value={instructions}
+        onChange={(e) => setInstructions(e.target.value)}
+        placeholder="Instructions"
+        className="form-textarea"
+        rows="6"
+      />
       
       <button type="submit" className="submit-button">
         Add Recipe
