@@ -777,3 +777,13 @@ body {
   }
 >>>>>>> 434854ed03a0e6d007520287b83ed795d77ccdf3
 }
+
+/* Add this to the existing App.css file */
+.recipe-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.recipe-link:hover {
+  text-decoration: none;
+}
