@@ -1,26 +1,39 @@
 import { useState } from 'react';
-import useRecipeStore from '../store/recipeStore';
+import useRecipeStore from './recipeStore';
 
 const AddRecipeForm = () => {
   const addRecipe = useRecipeStore((state) => state.addRecipe);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    ingredients: '',
+    instructions: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     
-    if (!title.trim() || !description.trim()) {
-      alert('Please fill in both title and description');
+    if (!formData.title.trim() || !formData.description.trim()) {
+      alert('Please fill in title and description');
       return;
     }
 
-    addRecipe({ 
-      title: title.trim(), 
-      description: description.trim() 
-    });
+    addRecipe(formData);
     
-    setTitle('');
-    setDescription('');
+    setFormData({
+      title: '',
+      description: '',
+      ingredients: '',
+      instructions: ''
+    });
   };
 
   return (
@@ -30,20 +43,46 @@ const AddRecipeForm = () => {
       <div className="form-group">
         <input
           type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Recipe Title"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          placeholder="Recipe Title *"
           className="form-input"
+          required
         />
       </div>
       
       <div className="form-group">
         <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Recipe Description"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          placeholder="Recipe Description *"
+          className="form-textarea"
+          rows="3"
+          required
+        />
+      </div>
+
+      <div className="form-group">
+        <textarea
+          name="ingredients"
+          value={formData.ingredients}
+          onChange={handleChange}
+          placeholder="Ingredients (comma-separated)"
           className="form-textarea"
           rows="4"
+        />
+      </div>
+
+      <div className="form-group">
+        <textarea
+          name="instructions"
+          value={formData.instructions}
+          onChange={handleChange}
+          placeholder="Instructions"
+          className="form-textarea"
+          rows="6"
         />
       </div>
       
