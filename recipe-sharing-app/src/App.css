@@ -484,6 +484,7 @@ body {
   .app-layout {
     grid-template-columns: 300px 1fr;
   }
+<<<<<<< HEAD
 }
 
 @media (max-width: 768px) {
@@ -740,4 +741,39 @@ body {
     width: 100%;
     text-align: center;
   }
+=======
+}
+
+@media (max-width: 768px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .sidebar {
+    position: static;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding: 1rem;
+  }
+  
+  .recipes-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .recipe-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .recipe-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+>>>>>>> 434854ed03a0e6d007520287b83ed795d77ccdf3
 }

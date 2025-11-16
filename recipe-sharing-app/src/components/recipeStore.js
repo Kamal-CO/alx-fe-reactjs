@@ -34,6 +34,7 @@ const useRecipeStore = create((set, get) => ({
       cookTime: 12,
       difficulty: "Easy",
       category: "Dessert"
+<<<<<<< HEAD
     },
     {
       id: 4,
@@ -56,6 +57,8 @@ const useRecipeStore = create((set, get) => ({
       cookTime: 25,
       difficulty: "Medium",
       category: "Dinner"
+=======
+>>>>>>> 434854ed03a0e6d007520287b83ed795d77ccdf3
     }
   ],
   
@@ -66,10 +69,13 @@ const useRecipeStore = create((set, get) => ({
   maxPrepTime: '',
   filteredRecipes: [],
   
+<<<<<<< HEAD
   // Favorites and Recommendations
   favorites: [],
   recommendations: [],
   
+=======
+>>>>>>> 434854ed03a0e6d007520287b83ed795d77ccdf3
   // Recipe Actions
   addRecipe: (newRecipe) => 
     set((state) => ({ 
@@ -142,6 +148,7 @@ const useRecipeStore = create((set, get) => ({
     filteredRecipes: get().recipes
   }),
   
+<<<<<<< HEAD
   // Favorites Actions
   addFavorite: (recipeId) => 
     set((state) => ({ 
@@ -212,6 +219,8 @@ const useRecipeStore = create((set, get) => ({
     set({ recommendations: recommended });
   },
   
+=======
+>>>>>>> 434854ed03a0e6d007520287b83ed795d77ccdf3
   // Get available categories and difficulties for filters
   getCategories: () => {
     const recipes = get().recipes;
