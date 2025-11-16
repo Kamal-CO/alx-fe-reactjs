@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import useRecipeStore from '../components/recipeStore';
 import DeleteRecipeButton from './DeleteRecipeButton';
+import FavoriteButton from './FavoriteButton';
 
 const RecipeDetails = () => {
   const { id } = useParams();
@@ -25,16 +26,26 @@ const RecipeDetails = () => {
       <Link to="/" className="back-button">← Back to Recipes</Link>
       
       <div className="recipe-header">
-        <h1>{recipe.title}</h1>
-        <div className="recipe-actions">
-          <Link to={`/edit/${recipe.id}`} className="edit-button">
-            Edit Recipe
-          </Link>
-          <DeleteRecipeButton recipeId={recipe.id} recipeTitle={recipe.title} />
+        <div className="recipe-title-section">
+          <h1>{recipe.title}</h1>
+          <div className="recipe-actions-main">
+            <FavoriteButton recipeId={recipe.id} />
+            <Link to={`/edit/${recipe.id}`} className="edit-button">
+              Edit Recipe
+            </Link>
+            <DeleteRecipeButton recipeId={recipe.id} recipeTitle={recipe.title} />
+          </div>
         </div>
       </div>
       
       <div className="recipe-content">
+        <div className="recipe-meta-large">
+          <span className="meta-item">Category: {recipe.category}</span>
+          <span className="meta-item">Difficulty: {recipe.difficulty}</span>
+          <span className="meta-item">Prep Time: {recipe.prepTime} min</span>
+          <span className="meta-item">Cook Time: {recipe.cookTime} min</span>
+        </div>
+        
         <section className="recipe-section">
           <h3>Description</h3>
           <p>{recipe.description}</p>

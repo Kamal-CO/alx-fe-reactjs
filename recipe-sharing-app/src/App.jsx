@@ -5,6 +5,8 @@ import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
 import SearchBar from './components/SearchBar';
 import AdvancedFilters from './components/AdvancedFilters';
+import FavoritesList from './components/FavoritesList';
+import RecommendationsList from './components/RecommendationsList';
 import './App.css';
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
                   </div>
                   <div className="main-content">
                     <SearchBar />
+                    <RecommendationsList />
+                    <FavoritesList />
                     <RecipeList />
                   </div>
                 </div>

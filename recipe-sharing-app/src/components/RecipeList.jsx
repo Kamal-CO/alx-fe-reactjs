@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import useRecipeStore from '../components/recipeStore';
+import RecipeCard from './RecipeCard';
 
 const RecipeList = () => {
   const recipes = useRecipeStore(state => state.recipes);
@@ -17,7 +17,7 @@ const RecipeList = () => {
   return (
     <div className="recipe-list">
       <div className="recipe-list-header">
-        <h2>Recipes ({displayRecipes.length})</h2>
+        <h2>All Recipes ({displayRecipes.length})</h2>
         {hasActiveFilters && (
           <div className="active-filters">
             <span>Filtered results</span>
@@ -37,22 +37,7 @@ const RecipeList = () => {
       ) : (
         <div className="recipes-grid">
           {displayRecipes.map((recipe) => (
-            <div key={recipe.id} className="recipe-card">
-              <Link to={`/recipe/${recipe.id}`} className="recipe-link">
-                <h3>{recipe.title}</h3>
-                <p>{recipe.description}</p>
-                <div className="recipe-meta">
-                  <span className="recipe-category">{recipe.category}</span>
-                  <span className="recipe-difficulty">{recipe.difficulty}</span>
-                  <span className="recipe-time">{recipe.prepTime} min prep</span>
-                </div>
-              </Link>
-              <div className="recipe-card-actions">
-                <Link to={`/edit/${recipe.id}`} className="edit-link">
-                  Edit
-                </Link>
-              </div>
-            </div>
+            <RecipeCard key={recipe.id} recipe={recipe} />
           ))}
         </div>
       )}
