@@ -1,16 +1,14 @@
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import useRecipeStore from './recipeStore';
+import { useParams, Link } from 'react-router-dom';
+import useRecipeStore from '../store/recipeStore';
+import DeleteRecipeButton from './DeleteRecipeButton';
 
 const RecipeDetails = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const recipeId = parseInt(id);
   
   const recipe = useRecipeStore(state =>
     state.recipes.find(recipe => recipe.id === recipeId)
   );
-  
-  const deleteRecipe = useRecipeStore(state => state.deleteRecipe);
 
   if (!recipe) {
     return (
@@ -22,13 +20,6 @@ const RecipeDetails = () => {
     );
   }
 
-  const handleDelete = () => {
-    if (window.confirm('Are you sure you want to delete this recipe?')) {
-      deleteRecipe(recipeId);
-      navigate('/');
-    }
-  };
-
   return (
     <div className="recipe-details">
       <Link to="/" className="back-button">← Back to Recipes</Link>
@@ -36,12 +27,10 @@ const RecipeDetails = () => {
       <div className="recipe-header">
         <h1>{recipe.title}</h1>
         <div className="recipe-actions">
-          <Link to={`/edit-recipe/${recipe.id}`} className="edit-button">
+          <Link to={`/edit/${recipe.id}`} className="edit-button">
             Edit Recipe
           </Link>
-          <button onClick={handleDelete} className="delete-button">
-            Delete Recipe
-          </button>
+          <DeleteRecipeButton recipeId={recipe.id} recipeTitle={recipe.title} />
         </div>
       </div>
       
@@ -54,7 +43,7 @@ const RecipeDetails = () => {
         <section className="recipe-section">
           <h3>Ingredients</h3>
           <div className="ingredients-list">
-            {recipe.ingredients.split(',').map((ingredient, index) => (
+            {recipe.ingredients && recipe.ingredients.split(',').map((ingredient, index) => (
               <div key={index} className="ingredient-item">
                 • {ingredient.trim()}
               </div>
@@ -65,7 +54,7 @@ const RecipeDetails = () => {
         <section className="recipe-section">
           <h3>Instructions</h3>
           <div className="instructions">
-            {recipe.instructions.split('.').filter(step => step.trim()).map((step, index) => (
+            {recipe.instructions && recipe.instructions.split('.').filter(step => step.trim()).map((step, index) => (
               <div key={index} className="instruction-step">
                 <strong>Step {index + 1}:</strong> {step.trim()}.
               </div>
