@@ -1,11 +1,10 @@
-import Search from './components/Search';
+import AdvancedSearch from './components/AdvancedSearch';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <h1>GitHub User Search</h1>
-      <Search />
+    <div className="min-h-screen bg-gray-100 py-8">
+      <AdvancedSearch />
     </div>
   );
 }
