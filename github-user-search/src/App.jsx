@@ -1,11 +1,14 @@
-import AdvancedSearch from './components/Search';
+import Search from './components/Search';
+import ErrorBoundary from './components/ErrorBoundary';
 import './App.css';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
-      <AdvancedSearch />
-    </div>
+    <ErrorBoundary>
+      <div className="App">
+        <Search />
+      </div>
+    </ErrorBoundary>
   );
 }
 
