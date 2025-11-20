@@ -1,4 +1,4 @@
-import AdvancedSearch from './components/AdvancedSearch';
+import AdvancedSearch from './components/Search';
 import './App.css';
 
 function App() {
