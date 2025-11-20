@@ -1,16 +1,11 @@
-import React from 'react';
+import Search from './components/Search';
+import './App.css';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          GitHub User Search
-        </h1>
-        <p className="text-center text-gray-600">
-          Application setup successful! Ready for development.
-        </p>
-      </div>
+    <div className="App">
+      <h1>GitHub User Search</h1>
+      <Search />
     </div>
   );
 }
