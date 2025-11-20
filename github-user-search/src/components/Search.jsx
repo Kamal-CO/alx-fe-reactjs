@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { searchUsers } from '../services/githubService';
 
-function AdvancedSearch() {
+function Search() {
   // State for basic search
   const [username, setUsername] = useState('');
   // State for advanced filters
