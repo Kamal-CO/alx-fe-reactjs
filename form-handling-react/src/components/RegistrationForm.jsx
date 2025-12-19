@@ -66,16 +66,19 @@ const RegistrationForm = () => {
     }
   };
 
+  // FIXED VALIDATION FUNCTION
   const validateForm = () => {
     const newErrors = {};
     
-    if (!username.trim()) {
+    // Basic validation using if (!field) checks
+    if (!username) {
       newErrors.username = 'Username is required';
     } else if (username.length < 3) {
       newErrors.username = 'Username must be at least 3 characters';
     }
     
-    if (!email.trim()) {
+    // FIXED: Using if (!email) as requested
+    if (!email) {
       newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = 'Please enter a valid email address';
@@ -90,10 +93,25 @@ const RegistrationForm = () => {
     return newErrors;
   };
 
+  // Alternative simple validation basic checks
+  const basicValidate = () => {
+    const newErrors = {};
+    
+    // Simple if (!field) checks only
+    if (!username) newErrors.username = 'Username is required';
+    if (!email) newErrors.email = 'Email is required';
+    if (!password) newErrors.password = 'Password is required';
+    
+    return newErrors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Use validateForm() for full validation
+    // OR use basicValidate() for just the required field checks
     const validationErrors = validateForm();
+    
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
@@ -145,8 +163,8 @@ const RegistrationForm = () => {
             type="text"
             id="username"
             name="username"
-            value={username}  // This binds to the username state
-            onChange={handleChange}  // Or use handleUsernameChange
+            value={username}
+            onChange={handleChange}
             placeholder="Enter username"
             className={errors.username ? 'error' : ''}
           />
@@ -162,8 +180,8 @@ const RegistrationForm = () => {
             type="email"
             id="email"
             name="email"
-            value={email}  // This binds to the email state
-            onChange={handleChange}  // Or use handleEmailChange
+            value={email}
+            onChange={handleChange}
             placeholder="Enter email"
             className={errors.email ? 'error' : ''}
           />
@@ -179,8 +197,8 @@ const RegistrationForm = () => {
             type="password"
             id="password"
             name="password"
-            value={password}  // This binds to the password state
-            onChange={handleChange}  // Or use handlePasswordChange
+            value={password}
+            onChange={handleChange}
             placeholder="Enter password"
             className={errors.password ? 'error' : ''}
           />
