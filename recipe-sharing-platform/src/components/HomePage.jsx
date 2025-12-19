@@ -1,33 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import RecipeCard from './RecipeCard';
+import recipeData from '../data.json';
 
-const HomePage = () => {
-  const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    // Simulate loading data from JSON file
-    const loadRecipes = async () => {
-      try {
-        // In a real app, you would fetch from an API
-        // For now, we'll import the JSON directly
-        const response = await fetch('/data.json');
-        if (!response.ok) {
-          throw new Error('Failed to load recipes');
-        }
-        const data = await response.json();
-        setRecipes(data);
-      } catch (err) {
-        setError(err.message);
-        console.error('Error loading recipes:', err);
-      } finally {
-        setLoading(false);
+// In HomePage.jsx, update the useEffect:
+useEffect(() => {
+  const loadRecipes = async () => {
+    try {
+      // Fetch from public folder
+      const response = await fetch('/data.json');
+      if (!response.ok) {
+        throw new Error('Failed to load recipes');
       }
-    };
+      const data = await response.json();
+      setRecipes(data);
+    } catch (err) {
+      setError(err.message);
+      console.error('Error loading recipes:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    loadRecipes();
-  }, []);
+  loadRecipes();
+}, []);
 
   if (loading) {
     return (
@@ -138,6 +133,5 @@ const HomePage = () => {
       </div>
     </div>
   );
-};
 
 export default HomePage;
