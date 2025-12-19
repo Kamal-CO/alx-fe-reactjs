@@ -1,22 +1,66 @@
 import React, { useState } from 'react';
+import './RegistrationForm.css';
 
 const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
+  // State for form fields - these are the controlled values
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
+  // State for errors
+  const [errors, setErrors] = useState({
     username: '',
     email: '',
     password: ''
   });
   
-  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Individual change handlers for each field
+  const handleUsernameChange = (e) => {
+    const value = e.target.value;
+    setUsername(value);
+    // Clear error when user starts typing
+    if (errors.username) {
+      setErrors(prev => ({ ...prev, username: '' }));
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+    if (errors.email) {
+      setErrors(prev => ({ ...prev, email: '' }));
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+    if (errors.password) {
+      setErrors(prev => ({ ...prev, password: '' }));
+    }
+  };
+
+  // OR use a single handler (alternative approach)
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    // Clear error when user starts typing
+    
+    switch(name) {
+      case 'username':
+        setUsername(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'password':
+        setPassword(value);
+        break;
+      default:
+        break;
+    }
+    
+    // Clear error for this field
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -25,21 +69,21 @@ const RegistrationForm = () => {
   const validateForm = () => {
     const newErrors = {};
     
-    if (!formData.username.trim()) {
+    if (!username.trim()) {
       newErrors.username = 'Username is required';
-    } else if (formData.username.length < 3) {
+    } else if (username.length < 3) {
       newErrors.username = 'Username must be at least 3 characters';
     }
     
-    if (!formData.email.trim()) {
+    if (!email.trim()) {
       newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = 'Please enter a valid email address';
     }
     
-    if (!formData.password) {
+    if (!password) {
       newErrors.password = 'Password is required';
-    } else if (formData.password.length < 6) {
+    } else if (password.length < 6) {
       newErrors.password = 'Password must be at least 6 characters';
     }
     
@@ -64,7 +108,11 @@ const RegistrationForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          username,
+          email,
+          password
+        }),
       });
       
       if (response.ok) {
@@ -73,11 +121,9 @@ const RegistrationForm = () => {
         alert('Registration successful!');
         
         // Reset form
-        setFormData({
-          username: '',
-          email: '',
-          password: ''
-        });
+        setUsername('');
+        setEmail('');
+        setPassword('');
         setErrors({});
       }
     } catch (error) {
@@ -92,46 +138,55 @@ const RegistrationForm = () => {
     <div className="registration-form">
       <h2>User Registration (Controlled Components)</h2>
       <form onSubmit={handleSubmit}>
+        {/* Username Field */}
         <div className="form-group">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
             id="username"
             name="username"
-            value={formData.username}
-            onChange={handleChange}
+            value={username}  // This binds to the username state
+            onChange={handleChange}  // Or use handleUsernameChange
             placeholder="Enter username"
             className={errors.username ? 'error' : ''}
           />
-          {errors.username && <span className="error-message">{errors.username}</span>}
+          {errors.username && (
+            <span className="error-message">{errors.username}</span>
+          )}
         </div>
         
+        {/* Email Field */}
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
             name="email"
-            value={formData.email}
-            onChange={handleChange}
+            value={email}  // This binds to the email state
+            onChange={handleChange}  // Or use handleEmailChange
             placeholder="Enter email"
             className={errors.email ? 'error' : ''}
           />
-          {errors.email && <span className="error-message">{errors.email}</span>}
+          {errors.email && (
+            <span className="error-message">{errors.email}</span>
+          )}
         </div>
         
+        {/* Password Field */}
         <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
             id="password"
             name="password"
-            value={formData.password}
-            onChange={handleChange}
+            value={password}  // This binds to the password state
+            onChange={handleChange}  // Or use handlePasswordChange
             placeholder="Enter password"
             className={errors.password ? 'error' : ''}
           />
-          {errors.password && <span className="error-message">{errors.password}</span>}
+          {errors.password && (
+            <span className="error-message">{errors.password}</span>
+          )}
         </div>
         
         <button 
