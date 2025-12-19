@@ -129,4 +129,4 @@ const FormikForm = () => {
   );
 };
 
-export default FormikForm;
+export default formikForm;
